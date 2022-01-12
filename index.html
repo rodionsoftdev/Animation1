@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <title>Animation Effect 1</title>
+
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="" />
+
+        <!-- Google Font -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            :root {
+                --text-color: #fff;
+                --bg-animation: #000;
+                --selection-text: #000;
+                --selection-bg: #fff;
+                --font-xl: 80px;
+                --font-lg: 64px;
+                --font-md: 56px;
+                --font-sm: 42px;
+                --font-xs: 36px;
+                --font-xxs: 30px;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            ::selection {
+                background: var(--selection-bg);
+                color: var(--selection-text);
+            }
+
+            body {
+                height: 100vh;
+                line-height: 1.2;
+                text-transform: uppercase;
+                font-family: 'Roboto', sans-serif;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                text-rendering: optimizeLegibility;
+                background: var(--bg-animation);
+            }
+
+            .animation-area {
+                max-width: 95%;
+                width: 100%;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .main-text h2 {
+                font-size: var(--font-xl);
+                color: var(--text-color);
+            }
+
+            .animation-text span {
+                display: inline-block;
+            }
+
+            @media only screen and (max-width: 1199px) {
+                .main-text h2 {
+                    font-size: var(--font-lg);
+                }
+            }
+
+            @media only screen and (max-width: 991px) {
+                .main-text h2 {
+                    font-size: var(--font-md);
+                }
+            }
+
+            @media only screen and (max-width: 767px) {
+                .main-text h2 {
+                    font-size: var(--font-sm);
+                }
+            }
+
+            @media only screen and (max-width: 575px) {
+                .main-text h2 {
+                    font-size: var(--font-xs);
+                }
+            }
+
+            @media only screen and (max-width: 400px) {
+                .main-text h2 {
+                    font-size: var(--font-xxs);
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Main Animation -->
+        <div class="animation-area">
+            <div class="main-text">
+                <h2 class="animation-text">
+                    <span class="word-1">Fast</span>
+                    <span class="word-2">Amazing</span>
+                    <span class="word-3">Text</span>
+                </h2>
+            </div>
+        </div>
+        <!-- Main Animation -->
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+
+        <script>
+            // First Delay Before Start Animation
+            var startDelay = 0.8;
+
+            // Word 1 duration time
+            var duration1 = 0.6;
+
+            // Word 2 duration time
+            var duration2 = 0.7;
+
+            // Word 3 duration time
+            var duration3 = 0.7;
+
+            // Start Word 2 animation before Word 1 animation complete
+            var animationBefore1 = '-=0.4';
+
+            // Start Word 3 animation before Word 2 animation complete
+            var animationBefore2 = '-=0.35';
+
+            var animation1 = gsap.timeline({
+                delay: startDelay,
+                repeat: -1,
+                repeatDelay: 1,
+            });
+
+            animation1.from('.word-1', {
+                duration: duration1,
+                scale: 4,
+                x: '-300%',
+                y: '80%',
+                autoAlpha: 0,
+                ease: 'expo.out',
+            }),
+                animation1.from(
+                    '.word-2',
+                    {
+                        duration: duration2,
+                        scale: 6,
+                        x: '100%',
+                        autoAlpha: 0,
+                        ease: 'expo.out',
+                    },
+                    animationBefore1
+                ),
+                animation1.from(
+                    '.word-3',
+                    {
+                        duration: duration2,
+                        x: '80%',
+                        autoAlpha: 0,
+                        ease: 'expo.out',
+                    },
+                    animationBefore2
+                );
+        </script>
+    </body>
+</html>
